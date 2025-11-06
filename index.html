@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Catálogo Digital | Projeto Bootstrap</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">📚 Meu Catálogo</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Livros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Artesanato</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Categorias
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Romance</a></li>
+                            <li><a class="dropdown-item" href="#">Ficção Científica</a></li>
+                            <li><hr class="dropdown-divider"></li> 
+                            <li><a class="dropdown-item" href="#">Joias Artesanais</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">Desabilitado</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Buscar item" aria-label="Buscar item">
+                    <button class="btn btn-outline-light" type="submit">Buscar</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center">Destaques do Mês</h1>
+        <div class="row" id="catalogo-container">
+
+            <!-- Item 1: Livros -->
+            <!-- Exibe 4 colunas em computadores, 3 colunas em tablets e 2 colunas em celulares. -->
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4 item-catalogo" data-categoria="livros">
+                <div class="card h-100 shadow-sm rounded-3">
+                    <img src="https://placehold.co/400x300/1e40af/ffffff?text=LIVRO" class="card-img-top rounded-t-3" alt="Título do Item 1">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title text-primary">Título do Item 1</h5>
+                        <p class="card-text text-muted">Categoria: Livros</p>
+                        <p class="card-text flex-grow-1">Descrição curta do produto ou item do catálogo.</p>
+                    </div>
+                    <div class="card-footer bg-light border-top-0 d-grid">
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detalheModal">
+                            <i class="bi bi-search"></i> Ver Detalhes
+                        </button>
+                    </div>
+                </div>
+            </div> <!-- Item 1 -->
+            
+            <!-- Item 2: Artesanato -->
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4 item-catalogo" data-categoria="artesanato">
+                <div class="card h-100 shadow-sm rounded-3">
+                    <img src="https://placehold.co/400x300/e879f9/ffffff?text=ARTE" class="card-img-top rounded-t-3" alt="Título do Item 2">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title text-success">Título do Item 2</h5>
+                        <p class="card-text text-muted">Categoria: Artesanato</p>
+                        <p class="card-text flex-grow-1">Um item feito à mão com detalhes especiais e muito carinho.</p>
+                    </div>
+                    <div class="card-footer bg-light border-top-0 d-grid">
+                        <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#detalheModal">
+                            <i class="bi bi-search"></i> Ver Detalhes
+                        </button>
+                    </div>
+                </div>
+            </div> <!-- Item 2 -->
+            
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4 item-catalogo" data-categoria="livros">
+                <div class="card h-100 shadow-sm rounded-3">
+                    <img src="https://placehold.co/400x300/fb923c/000000?text=FICÇÃO" class="card-img-top rounded-t-3" alt="Placeholder Item">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Item de Livro 3</h5>
+                        <p class="card-text text-muted">Categoria: Livros</p>
+                        <p class="card-text flex-grow-1">Terceiro item de destaque.</p>
+                    </div>
+                    <div class="card-footer bg-light border-top-0 d-grid">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#detalheModal">
+                            <i class="bi bi-search"></i> Ver Detalhes
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4 item-catalogo" data-categoria="artesanato">
+                <div class="card h-100 shadow-sm rounded-3">
+                    <img src="https://placehold.co/400x300/a3e635/000000?text=DESIGN" class="card-img-top rounded-t-3" alt="Placeholder Item">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Item de Arte 4</h5>
+                        <p class="card-text text-muted">Categoria: Artesanato</p>
+                        <p class="card-text flex-grow-1">Quarto item de destaque.</p>
+                    </div>
+                    <div class="card-footer bg-light border-top-0 d-grid">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#detalheModal">
+                            <i class="bi bi-search"></i> Ver Detalhes
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+        </div> <!-- .row -->
+    </div> <!-- .container -->
+    
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <p>&copy; 2025 Catálogo do Ensino Médio. Desenvolvido com Bootstrap 5.</p>
+    </footer>
+    
+    <!-- Modal de Detalhes -->
+    <div class="modal fade" id="detalheModal" tabindex="-1" aria-labelledby="detalheModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="detalheModalLabel">Detalhes do Item</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Aqui apareceriam as informações completas do item, como preço, autor, especificações, etc. Este conteúdo pode ser atualizado via JavaScript.</p>
+                    <div class="alert alert-info" role="alert">
+                        <i class="bi bi-info-circle-fill"></i> Conteúdo dinâmico carregado por script.js
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-success"><i class="bi bi-cart-plus"></i> Adicionar à Lista</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
