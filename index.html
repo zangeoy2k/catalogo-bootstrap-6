@@ -10,7 +10,9 @@
     <script src="script.js"></script>
     <link href="style.css" rel="stylesheet">
 </head>
-<body>
+<!-- As classes abaixo, junto com .flex-grow-1 no .container, 
+    posicionam o rodapé no final da página. -->
+<body class="d-flex flex-column min-vh-100">
     
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg">
         <div class="container-fluid">
@@ -54,7 +56,7 @@
         </div>
     </nav>
     
-    <div class="container mt-5">
+    <div class="container mt-5 flex-grow-1">
         <h1 class="mb-4 text-center">Destaques do Mês</h1>
         <div class="row" id="catalogo-container">
 
