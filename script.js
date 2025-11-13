@@ -148,12 +148,52 @@ items.forEach((card, index) => {
     const item = CATALOG_ITEMS.find(i => i.id === (index + 1));
     
     if (item) {
+        // Atualiza o texto da imagem do cartão com a categoria do item
         img.src = img.src.replace(/\?text=(.*)/, "?text=" + item.categoria.toUpperCase());
-        
+        // Atualiza o texto do título do cartão
         title.textContent = item.titulo;
-        
+        // Atualiza a categoria do item
         category.textContent = "Categoria: " + item.categoria;
+        // Atualiza a descrição do item
         description.textContent = item.detalhes;
         
     }
 });
+
+//4. Adiciona funcionalidade de cookies (persistência) dos itens adicionados ao carrinho
+// (mantém os produtos adicionados ao carrinho mesmo ao fechar ou atualizar a página)
+const CART_STORAGE_KEY = 'shopping_cart';
+
+function obterCarrinhoDoNavegador() {
+    // Tenta ler o cookie do navegador
+    try {
+        const cookie = localStorage.getItem(CART_STORAGE_KEY);
+        IF (cookie) {
+            // Se existir, retorna o cookie
+            return JSON.parse(cookie);
+        }
+    } catch (e) {
+        console.error("Falha ao ler o cookie do armazenamento local.")
+    }
+    // Retorna um vetor vaziuo em caso de falha
+    return [];
+}
+
+function salvarCookieCarrinho(itensCarrinho) {
+    try {
+        // Salva os itens do carrinho em formato JSON no navegador.
+        // Ex: ao adicionar o item com ID '2' e '3' ao carrinho, CART_STORAGE_KEY = {2,3}
+        //Você pode visualizar os itens salvos no navegador Web em:
+        // Botão direito na página > Inspencionar > Application > Storage > Local storage
+        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(itensCarrinho));
+    } catch (e) {
+        console.error("ERRO: Falha ao salvar carrinho no navegador. Erro: ", e);
+    }
+}
+
+function adicionarItemCarrinho(itemId) { // Obtém os itens atuais do carrinho
+    const carrinho = obterCarrinhoDoNavegador();
+    carrinho.push(itemId); // Adiciona o ID do item recebido como parâmetro da função ao carrinho
+    salvarCookieCarrinho(); // Atualiza o carrinho
+    atualizarContadorCarrinho(); // Atualiza o número de itens no HTML do carrinho da navbar
+}
