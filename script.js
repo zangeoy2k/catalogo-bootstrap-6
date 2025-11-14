@@ -85,9 +85,10 @@ modalElement.addEventListener('show.bs.modal', function (event) {
         
         // Ao cklicar no botão "Adicionar  ao carrinho"
         modalAction.onclick = () => {
-            console.log(`Ação Item '${item.título}' (ID: ${item.id}) adicionado ao carrinho. `);
             // Em uma aplicação real, você faria uma chamada de API aqui.
             // Para este exemplo, apenas fechamos o modal e mostramos o log.
+            adicionarItemCarrinho(item.id);
+             console.log(`Ação: Item '${item.titulo}' (ID: ${item.id}) adicionado ao carrinho. `);
             const bsModal = bootstrap.Modal.getInstance(modalElement);
             if(bsModal) bsModal.hide();
         };
@@ -168,7 +169,7 @@ function obterCarrinhoDoNavegador() {
     // Tenta ler o cookie do navegador
     try {
         const cookie = localStorage.getItem(CART_STORAGE_KEY);
-        IF (cookie) {
+        if (cookie) {
             // Se existir, retorna o cookie
             return JSON.parse(cookie);
         }
@@ -191,9 +192,34 @@ function salvarCookieCarrinho(itensCarrinho) {
     }
 }
 
+function atualizarContadorCarrinho() {
+    // Obtém os itens no carrinho
+    const carrinho = obterCarrinhoDoNavegador();
+    // Obtém o elemento HTML que exibe o número de itens no carrinho
+    const carrinhoBadge = document.getElementById("cart-count");
+    
+    // Se o elemento que exibe o número de itens no carrinho (badge) existe
+    if (carrinhoBadge) {
+        // Atualiza o badge do carrinho com o número de itens no carrinho
+        carrinhoBadge.textContent = carrinho.length;
+        
+        if (carrinho.length > 0) {
+            // Remove a classe Bootstrap 'd-none' (CSS: 'display: none;') para exibir o badge
+            carrinhoBadge.classList.remove('d-none');
+        } else {
+            // Adiciona a classe Bootstrap 'd-none' (CSS: 'display: none;') para ocultar o badge
+            carrinhoBadge.classList.add('d-none');
+            
+        }
+    }
+}
+
 function adicionarItemCarrinho(itemId) { // Obtém os itens atuais do carrinho
     const carrinho = obterCarrinhoDoNavegador();
     carrinho.push(itemId); // Adiciona o ID do item recebido como parâmetro da função ao carrinho
-    salvarCookieCarrinho(); // Atualiza o carrinho
+    salvarCookieCarrinho(carrinho); // Atualiza o carrinho
     atualizarContadorCarrinho(); // Atualiza o número de itens no HTML do carrinho da navbar
 }
+
+// Carrega o número de itens no carrinho ao carregar a página HTML
+atualizarContadorCarrinho();
